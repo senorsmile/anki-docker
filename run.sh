@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+#set -euo pipefail
 
-source version.sh
+source variables.sh
 container="senorsmile-anki"
 
 mkdir -p "${HOME}/anki-docker/"
@@ -22,8 +22,12 @@ opts=(
 
   --name anki
   --restart always
-  "${container}:${version}"
+  "${container}:${anki_version}-${build_num}"
 )
+
+# https://unix.stackexchange.com/questions/209746/how-to-resolve-no-protocol-specified-for-su-user
+#xauth + local:
+xhost + local:
 
 docker stop anki || echo
 docker rm anki || echo 

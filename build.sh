@@ -2,6 +2,14 @@
 
 set -euo pipefail
 
-source version.sh
+source ./variables.sh
 
-docker build -t "senorsmile-anki:${version}" .
+
+opts=(
+  build 
+  -t "senorsmile-anki:${anki_version}-${build_num}" 
+  --build-arg ANKI_VERSION=${anki_version}
+  .
+)
+
+time docker ${opts[@]}
