@@ -1,10 +1,12 @@
-FROM ubuntu:bionic-20200807
+# https://hub.docker.com/_/ubuntu?tab=tags&page=1&ordering=last_updated
+FROM ubuntu:bionic-20201119
+#FROM ubuntu:bionic-20200807
 
 #-------------------------
 ### prereqs
 
 # in order to force apt update
-ENV THROW_AWAY=0001 
+ENV THROW_AWAY=0005
 
 # update apt repos
 RUN set -ex && apt-get update
@@ -55,10 +57,13 @@ ENV ANKI_VERSION ${ANKI_VERSION}
 RUN mkdir -p /build/src/
 WORKDIR /build/src
 
-RUN wget https://apps.ankiweb.net/downloads/current/anki-$ANKI_VERSION-linux-amd64.tar.bz2
+#RUN wget https://apps.ankiweb.net/downloads/current/anki-$ANKI_VERSION-linux-amd64.tar.bz2
+#RUN wget https://github.com/ankitects/anki/releases/download/$ANKI_VERSION/anki-$ANKI_VERSION-linux.tar.bz2
+RUN wget https://github.com/ankitects/anki/releases/download/$ANKI_VERSION/anki-$ANKI_VERSION-linux-amd64.tar.bz2
 
 # install anki
 RUN tar xjf anki-$ANKI_VERSION-linux-amd64.tar.bz2
+#RUN tar xjf anki-$ANKI_VERSION-linux.tar.bz2
 
 WORKDIR /build/src/anki-$ANKI_VERSION-linux-amd64
 
