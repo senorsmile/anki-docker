@@ -11,8 +11,9 @@ opts=(
   -d
 
   -v "${HOME}/Downloads:/root/Downloads"
+  -v "${HOME}/Documents:/root/Documents"
   # do NOT share with a host installed folder... create a new custom path
-  -v "${HOME}/anki2-docker:/root/.local/share/Anki2" 
+  -v "${HOME}/anki2-docker-${anki_version}:/root/.local/share/Anki2" 
   -v /etc/localtime:/etc/localtime:ro
   -v /tmp/.X11-unix:/tmp/.X11-unix # mount the X11 socket
   #-e DISPLAY=unix$DISPLAY # pass the display

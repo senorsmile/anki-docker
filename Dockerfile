@@ -58,18 +58,22 @@ RUN mkdir -p /build/src/
 WORKDIR /build/src
 
 #RUN wget https://apps.ankiweb.net/downloads/current/anki-$ANKI_VERSION-linux-amd64.tar.bz2
-#RUN wget https://github.com/ankitects/anki/releases/download/$ANKI_VERSION/anki-$ANKI_VERSION-linux.tar.bz2
-RUN wget https://github.com/ankitects/anki/releases/download/$ANKI_VERSION/anki-$ANKI_VERSION-linux-amd64.tar.bz2
+#RUN wget https://github.com/ankitects/anki/releases/download/$ANKI_VERSION/anki-$ANKI_VERSION-linux.tar.bz2 ## 2.1.19?
+#RUN wget https://github.com/ankitects/anki/releases/download/$ANKI_VERSION/anki-$ANKI_VERSION-linux-amd64.tar.bz2
+RUN wget https://github.com/ankitects/anki/releases/download/$ANKI_VERSION/anki-$ANKI_VERSION-linux.tar.bz2 # as of 2021 Oct 23 removed -amd64
 
 # install anki
-RUN tar xjf anki-$ANKI_VERSION-linux-amd64.tar.bz2
-#RUN tar xjf anki-$ANKI_VERSION-linux.tar.bz2
+#RUN tar xjf anki-$ANKI_VERSION-linux.tar.bz2 ## 2.1.19?
+#RUN tar xjf anki-$ANKI_VERSION-linux-amd64.tar.bz2
+RUN tar xjf anki-$ANKI_VERSION-linux.tar.bz2
 
-WORKDIR /build/src/anki-$ANKI_VERSION-linux-amd64
+#WORKDIR /build/src/anki-$ANKI_VERSION-linux-amd64
+WORKDIR /build/src/anki-$ANKI_VERSION-linux
 
 RUN mkdir -p /root/.config/
 
-RUN make install
+#RUN make install
+RUN bash ./install.sh
 #-------------------------
 
 
