@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#set -euo pipefail
+set -euo pipefail
 
 source variables.sh
 container="senorsmile-anki"
@@ -10,15 +10,26 @@ mkdir -p "${HOME}/anki-docker/"
 opts=(
   -d
 
+  #--user $(id -u):$(id -g) # figure this out later
+
   -v "${HOME}/Downloads:/root/Downloads"
   -v "${HOME}/Documents:/root/Documents"
+
   # do NOT share with a host installed folder... create a new custom path
   -v "${HOME}/anki2-docker-${anki_version}:/root/.local/share/Anki2" 
+
   -v /etc/localtime:/etc/localtime:ro
+
   -v /tmp/.X11-unix:/tmp/.X11-unix # mount the X11 socket
   #-e DISPLAY=unix$DISPLAY # pass the display
   -e "DISPLAY=${DISPLAY}"  # better way to pass display?
+
   --device /dev/snd # sound
+  #-----------------------------
+  # trying to get sound work
+  -v /dev/snd:/dev/snd
+  --privileged
+  #-----------------------------
   --device /dev/dri # necessary?
 
   --name anki

@@ -6,7 +6,8 @@ FROM ubuntu:bionic-20201119
 ### prereqs
 
 # in order to force apt update
-ENV THROW_AWAY=0005
+ENV APT_UPDATED=20211023-1611
+#ENV THROW_AWAY=20211023-1611
 
 # update apt repos
 RUN set -ex && apt-get update
@@ -74,6 +75,9 @@ RUN mkdir -p /root/.config/
 
 #RUN make install
 RUN bash ./install.sh
+
+# install japanese language support
+RUN apt-get install -y fonts-takao-mincho fonts-takao
 #-------------------------
 
 
