@@ -17,5 +17,8 @@
 #anki_version=2.1.15
 
 
-anki_version=2.1.40
+# anki_version=2.1.40
+# build_num=2
+
+anki_version=2.1.60
 build_num=2
