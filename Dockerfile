@@ -88,7 +88,7 @@ USER ankiuser
 WORKDIR /home/ankiuser
 
 ### Set runtime env variables
-ENV DISABLE_QT5_COMPAT=1
+# ENV DISABLE_QT5_COMPAT=1
 ENV LANG=en_US.UTF-8
 
 ENTRYPOINT [ "anki" ]
